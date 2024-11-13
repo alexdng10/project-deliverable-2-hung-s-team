@@ -1,11 +1,12 @@
 // Table class representing individual tables
 class Table {
+    private static int idCounter = 1;
     private int tableId;
     private int seats;
     private boolean isReserved;
 
-    public Table(int tableId, int seats) {
-        this.tableId = tableId;
+    public Table(int seats) {
+        this.tableId = idCounter++;
         this.seats = seats;
         this.isReserved = false;
     }

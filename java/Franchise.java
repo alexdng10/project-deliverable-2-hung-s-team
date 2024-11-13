@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 // Franchise class representing a restaurant location
 class Franchise {
     private String location;
@@ -16,6 +18,10 @@ class Franchise {
         tables.add(table);
     }
 
+
+    // CURRENTLY THIS METHOD ONLY RETURNS AVAILABLE TABLES,
+    // WE MAY OR MAY NOT NEED TO CHANGE LATER DEPENDING ON HOW WE WILL IMPLEMENT THE FRONT END
+    // BUT JUST BE AWARE OF THIS
     public List<Table> getTableAvailability() {
         List<Table> availableTables = new ArrayList<>();
         for (Table table : tables) {
