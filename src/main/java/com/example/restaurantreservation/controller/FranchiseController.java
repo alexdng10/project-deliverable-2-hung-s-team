@@ -4,6 +4,7 @@ import com.example.restaurantreservation.model.Franchise;
 import com.example.restaurantreservation.model.Table;
 import com.example.restaurantreservation.model.Owner;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -12,22 +13,22 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/franchises")
-public class FranchiseController {
+public class FranchiseController {  
     private final List<Franchise> franchises = new ArrayList<>();
 
     public FranchiseController() {
-        // Create a default owner for initialization
+        // Initialize with index-based IDs
         Owner defaultOwner = new Owner("Default Owner", "owner@example.com", "password", null);
 
-        // Initialize Downtown Restaurant
+        // Downtown Restaurant (ID: 0)
         Franchise downtown = new Franchise("Downtown Location", defaultOwner);
         downtown.addTable(new Table(4));
         downtown.addTable(new Table(2));
         downtown.addTable(new Table(6));
         franchises.add(downtown);
-        defaultOwner.setFranchise(downtown); // Set franchise after creation
+        defaultOwner.setFranchise(downtown);
 
-        // Initialize Uptown Restaurant
+        // Uptown Restaurant (ID: 1)
         Owner uptownOwner = new Owner("Uptown Owner", "uptown@example.com", "password", null);
         Franchise uptown = new Franchise("Uptown Location", uptownOwner);
         uptown.addTable(new Table(4));
@@ -35,7 +36,7 @@ public class FranchiseController {
         franchises.add(uptown);
         uptownOwner.setFranchise(uptown);
 
-        // Initialize Midtown Restaurant
+        // Midtown Restaurant (ID: 2)
         Owner midtownOwner = new Owner("Midtown Owner", "midtown@example.com", "password", null);
         Franchise midtown = new Franchise("Midtown Location", midtownOwner);
         midtown.addTable(new Table(4));
@@ -45,15 +46,20 @@ public class FranchiseController {
     }
 
     @GetMapping
-    public List<Franchise> getAllFranchises() {
-        return franchises;
+    public ResponseEntity<List<Franchise>> getAllFranchises() {
+        return ResponseEntity.ok(franchises);
     }
 
     @GetMapping("/{franchiseId}/tables")
-    public List<Table> getTablesByFranchise(@PathVariable int franchiseId) {
-        if (franchiseId >= 0 && franchiseId < franchises.size()) {
-            return franchises.get(franchiseId).getTableAvailability();
+    public ResponseEntity<List<Table>> getTablesByFranchise(@PathVariable String franchiseId) {
+        try {
+            int index = Integer.parseInt(franchiseId);
+            if (index >= 0 && index < franchises.size()) {
+                return ResponseEntity.ok(franchises.get(index).getTableAvailability());
+            }
+            return ResponseEntity.notFound().build();
+        } catch (NumberFormatException e) {
+            return ResponseEntity.badRequest().build();
         }
-        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Franchise not found");
     }
 }

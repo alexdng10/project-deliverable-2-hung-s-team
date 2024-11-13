@@ -5,16 +5,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Franchise {
+    private static int counter = 0;
+    private final int id;
     private String location;
     private List<Table> tables;
     private List<Reservation> reservations;
     private Owner owner;
 
     public Franchise(String location, Owner owner) {
+        this.id = counter++;
         this.location = location;
         this.owner = owner;
         this.tables = new ArrayList<>();
         this.reservations = new ArrayList<>();
+    }
+    public int getId() {
+        return id;
     }
 
     public void addTable(Table table) {

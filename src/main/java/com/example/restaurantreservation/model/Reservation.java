@@ -1,4 +1,3 @@
-// src/main/java/com/example/restaurantreservation/model/Reservation.java
 package com.example.restaurantreservation.model;
 
 import java.util.UUID;
@@ -18,21 +17,11 @@ public class Reservation {
         this.endTime = endTime;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public Table getTable() {
-        return table;
-    }
-
-    public String getStartTime() {
-        return startTime;
-    }
-
-    public String getEndTime() {
-        return endTime;
-    }
+    public String getId() { return id; }
+    public User getUser() { return user; }  // Added this getter
+    public Table getTable() { return table; }
+    public String getStartTime() { return startTime; }
+    public String getEndTime() { return endTime; }
 
     public void confirmReservation() {
         System.out.println("Reservation confirmed for table " + table.getTableId() + "\n email confirmation sent, too");
