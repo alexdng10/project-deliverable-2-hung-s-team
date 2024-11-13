@@ -1,5 +1,7 @@
-// Table class representing individual tables
-class Table {
+// src/main/java/com/example/restaurantreservation/model/Table.java
+package com.example.restaurantreservation.model;
+
+public class Table {
     private static int idCounter = 1;
     private int tableId;
     private int seats;

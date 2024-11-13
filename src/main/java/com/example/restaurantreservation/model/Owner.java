@@ -1,7 +1,8 @@
-import java.util.ArrayList;
+package com.example.restaurantreservation.model;
+
 import java.util.List;
-// Owner class extending User
-class Owner extends User {
+
+public class Owner extends User {
     private Franchise franchise;
 
     public Owner(String name, String email, String password, Franchise franchise) {
@@ -12,6 +13,7 @@ class Owner extends User {
     public List<Reservation> viewReservations() {
         return franchise.getReservations();
     }
+
     public void setFranchise(Franchise franchise) {
         this.franchise = franchise;
     }

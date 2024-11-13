@@ -1,14 +1,14 @@
 package com.example.restaurantreservation.model;
 
 public class ReservationRequest {
-    private User user;
+    private String userEmail; // Changed from User to String
     private Table table;
     private String startTime;
     private String endTime;
 
-    // Constructors, getters, and setters
-    public User getUser() { return user; }
-    public void setUser(User user) { this.user = user; }
+    // Getters and setters
+    public String getUserEmail() { return userEmail; }
+    public void setUserEmail(String userEmail) { this.userEmail = userEmail; }
 
     public Table getTable() { return table; }
     public void setTable(Table table) { this.table = table; }

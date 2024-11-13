@@ -1,13 +1,14 @@
+// src/main/java/com/example/restaurantreservation/model/Reservation.java
+package com.example.restaurantreservation.model;
+
 import java.util.UUID;
 
-// Reservation class
-class Reservation {
+public class Reservation {
     private final String id;
     private final User user;
     private final Table table;
     private final String startTime;
     private final String endTime;
-
 
     public Reservation(User user, Table table, String startTime, String endTime) {
         this.id = UUID.randomUUID().toString();
@@ -34,7 +35,7 @@ class Reservation {
     }
 
     public void confirmReservation() {
-        System.out.println("Reservation confirmed for table " + table.getTableId() + "\n email confirmatin sent, too");
+        System.out.println("Reservation confirmed for table " + table.getTableId() + "\n email confirmation sent, too");
     }
 
     public void cancelReservation() {
