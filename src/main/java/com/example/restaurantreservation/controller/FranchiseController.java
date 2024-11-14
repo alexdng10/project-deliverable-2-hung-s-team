@@ -1,8 +1,6 @@
 package com.example.restaurantreservation.controller;
 
-import com.example.restaurantreservation.model.Franchise;
-import com.example.restaurantreservation.model.Table;
-import com.example.restaurantreservation.model.Owner;
+import com.example.restaurantreservation.model.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,10 +11,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/franchises")
+@CrossOrigin(origins = "http://localhost:3000")
 public class FranchiseController {  
     private final List<Franchise> franchises = new ArrayList<>();
 
     public FranchiseController() {
+        // Create test user for frontend testing
+        new User("Test User", "test@example.com", "password", false);
+        
         // Initialize with index-based IDs
         Owner defaultOwner = new Owner("Default Owner", "owner@example.com", "password", null);
 
@@ -61,5 +63,12 @@ public class FranchiseController {
         } catch (NumberFormatException e) {
             return ResponseEntity.badRequest().build();
         }
+    }
+
+    // Optional: Add endpoint to create test users if needed
+    @PostMapping("/test-user")
+    public ResponseEntity<User> createTestUser(@RequestBody User user) {
+        User newUser = new User(user.getName(), user.getEmail(), "password", false);
+        return ResponseEntity.ok(newUser);
     }
 }

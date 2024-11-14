@@ -2,3 +2,9 @@ Alice,alice@example.com,password123,true
 Bob,bob@example.com,bobpassword,false
 Alice,alice@example.com,password123,true
 Bob,bob@example.com,bobpassword,false
+Default Owner,owner@example.com,password,true
+Uptown Owner,uptown@example.com,password,true
+Midtown Owner,midtown@example.com,password,true
+Test User,test@example.com,password,false
+User 1,user1@example.com,password,false
+oij,oij@gmail.com,password,false
